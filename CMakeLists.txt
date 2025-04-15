@@ -72,20 +72,20 @@ set_target_properties(${This} PROPERTIES
 )
 
 # Build
-set(OUTPUT_DIR "${CMAKE_SOURCE_DIR}/../../Runtime/Plugins")
+set(OUTPUT_DIR "${CMAKE_SOURCE_DIR}/Runtime/Plugins")
 set_target_properties(${This} PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${OUTPUT_DIR}"
 )
 
 # Copy library to unity and clean it up
 # Note for testing comment this out (Unity will often lock the output file)
-add_custom_command(TARGET ${This} POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E remove "${OUTPUT_DIR}/${This}.dll"
-    COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:${This}>" "${OUTPUT_DIR}/${This}.dll"
-    COMMAND ${CMAKE_COMMAND} -E remove_directory "${OUTPUT_DIR}/Release"
-    COMMAND ${CMAKE_COMMAND} -E remove_directory "${OUTPUT_DIR}/Debug"
-    COMMENT "Copying UnityHidApiPlugin.dll to Project Plugins directory and replacing the existing file and removing Debug"
-)
+# add_custom_command(TARGET ${This} POST_BUILD
+#     COMMAND ${CMAKE_COMMAND} -E remove "${OUTPUT_DIR}/${This}.dll"
+#     COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:${This}>" "${OUTPUT_DIR}/${This}.dll"
+#     COMMAND ${CMAKE_COMMAND} -E remove_directory "${OUTPUT_DIR}/Release"
+#     COMMAND ${CMAKE_COMMAND} -E remove_directory "${OUTPUT_DIR}/Debug"
+#     COMMENT "Copying UnityHidApiPlugin.dll to Project Plugins directory and replacing the existing file and removing Debug"
+# )
 
 # Testing
 include(Dart)
